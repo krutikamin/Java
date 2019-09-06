@@ -19,7 +19,8 @@ public class Problem01 {
 		} while (die1 != 1 && die2 != 1);
 		
 		System.out.print("It took " + numTurns + " roll");
-		System.out.print(numTurns > 1 ? "s to come up snake eyes." : " to come up snake eyes.");
+		System.out.print(numTurns > 1 ? "s " : " ");
+		System.out.println("to come up snake eyes.");
 	}
 
 }
