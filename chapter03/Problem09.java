@@ -37,9 +37,9 @@ public class Problem09 extends Application {
     	int       square1cyclicFrameNumber = frameNumber % 1;
     	int       square2cyclicFrameNumber = frameNumber % 2;
     	int       square3cyclicFrameNumber = frameNumber % 3;
-    	int       square4oscillationFrameNumber = frameNumber % (2 * 5);
-    	int       square5oscillationFrameNumber = frameNumber % (2 * 10);
-    	int       square6oscillationFrameNumber = frameNumber % (2 * 15);
+    	int       square4oscillationFrameNumber = frameNumber % (2 * 1);
+    	int       square5oscillationFrameNumber = frameNumber % (2 * 2);
+    	int       square6oscillationFrameNumber = frameNumber % (2 * 3);
     	
     	if(square4oscillationFrameNumber > 1)
     		square4oscillationFrameNumber = (2 * 1) - square4oscillationFrameNumber; 
