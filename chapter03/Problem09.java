@@ -32,17 +32,62 @@ public class Problem09 extends Application {
         /* NOTE:  To get a different animation, just erase the contents of this 
          * subroutine and substitute your own. 
          */
+    	final int NUM_SQUARES = 6;
+    	final int SQUARE_SIZE = height/NUM_SQUARES;
+    	int       square1cyclicFrameNumber = frameNumber % 1;
+    	int       square2cyclicFrameNumber = frameNumber % 2;
+    	int       square3cyclicFrameNumber = frameNumber % 3;
+    	int       square4oscillationFrameNumber = frameNumber % (2 * 5);
+    	int       square5oscillationFrameNumber = frameNumber % (2 * 10);
+    	int       square6oscillationFrameNumber = frameNumber % (2 * 15);
+    	
+    	if(square4oscillationFrameNumber > 1)
+    		square4oscillationFrameNumber = (2 * 1) - square4oscillationFrameNumber; 
 
+    	if(square5oscillationFrameNumber > 2)
+    		square5oscillationFrameNumber = (2 * 2) - square5oscillationFrameNumber;
+    	
+    	if(square6oscillationFrameNumber > 3)
+    		square6oscillationFrameNumber = (2 * 3) - square6oscillationFrameNumber;
+    	
         g.setFill(Color.WHITE);
         g.fillRect(0, 0, width, height); // First, fill the entire image with a background color!
 
         g.setFill(Color.BLACK);
         g.setLineWidth(2);
         g.strokeRect(0, 0, width, height);
-        for(int i = 0, x1 = 0, x2 = width, y1 = (height/6), y2 = y1; i < 6; 
-        		i++, y1 += (height/6), y2 = y1) {
+        
+        for(int i = 0, x1 = 0, x2 = width, y1 = (height/NUM_SQUARES), y2 = y1; i < NUM_SQUARES; 
+        		i++, y1 += (height/NUM_SQUARES), y2 = y1) {
         	g.strokeLine(x1, y1, x2, y2);
         }
+        
+        if(square1cyclicFrameNumber == 0) {
+        	g.setFill(Color.RED);
+            g.fillRect((frameNumber % width) + 1 , 1, SQUARE_SIZE, SQUARE_SIZE-2);	
+        }
+        if(square2cyclicFrameNumber == 0) {
+        	g.setFill(Color.GREEN);
+            g.fillRect(((2 * frameNumber) % (width)), SQUARE_SIZE + 1, SQUARE_SIZE, SQUARE_SIZE-2);	
+        }
+        if(square3cyclicFrameNumber == 0) {
+        	g.setFill(Color.BLUE);
+            g.fillRect(((3 * frameNumber) % (width)), (SQUARE_SIZE * 2) + 1, SQUARE_SIZE, SQUARE_SIZE-2);	
+        }
+        
+        if(square4oscillationFrameNumber == 0) {
+        	g.setFill(Color.CYAN);
+            g.fillRect((frameNumber) % (width), (SQUARE_SIZE * 3) + 1, SQUARE_SIZE, SQUARE_SIZE-2);	
+        }
+        if(square5oscillationFrameNumber == 0) {
+        	g.setFill(Color.PINK);
+            g.fillRect(((2 * frameNumber) % (width)), (SQUARE_SIZE * 4) + 1, SQUARE_SIZE, SQUARE_SIZE-2);	
+        }
+        if(square6oscillationFrameNumber == 0) {
+        	g.setFill(Color.YELLOW);
+            g.fillRect(((3 * frameNumber) % (width)), (SQUARE_SIZE * 5) + 1, SQUARE_SIZE, SQUARE_SIZE-2);	
+        }
+        
         g.fillText( "Frame number " + frameNumber, 40, 50 );
         g.fillText( String.format("Elapsed Time: %1.1f seconds", elapsedSeconds), 40, 80);
 
@@ -50,8 +95,7 @@ public class Problem09 extends Application {
 
     //------ Implementation details: DO NOT EXPECT TO UNDERSTAND THIS ------
 
-
-    public void start(Stage stage) {
+	public void start(Stage stage) {
         int width = 800;   // The width of the image.  You can modify this value!
         int height = 600;  // The height of the image. You can modify this value!
         Canvas canvas = new Canvas(width,height);
