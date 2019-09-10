@@ -36,21 +36,24 @@ public class Problem09 extends Application {
     	final int SQUARE_SIZE = height/NUM_SQUARES;
     	int       square1cyclicFrameNumber = frameNumber % 1;
     	int       square2cyclicFrameNumber = frameNumber % 2;
-    	int       square3cyclicFrameNumber = frameNumber % 3;
-    	int       square4oscillationFrameNumber = frameNumber % (2 * 1);
-    	int       square5oscillationFrameNumber = frameNumber % (2 * 2);
-    	int       square6oscillationFrameNumber = frameNumber % (2 * 3);
+    	int       square3cyclicFrameNumber = frameNumber % 4;
+    	int       square4oscillationFrameNumber = frameNumber % (2 * width);
+    	int       square5oscillationFrameNumber = frameNumber % (width);
+    	int       square6oscillationFrameNumber = frameNumber % (width);
     	
-    	if(square4oscillationFrameNumber > 1)
-    		square4oscillationFrameNumber = (2 * 1) - square4oscillationFrameNumber; 
+    	if(square4oscillationFrameNumber > width) {
+    		square4oscillationFrameNumber = (width) - (frameNumber % width);
+    	}
 
-    	if(square5oscillationFrameNumber > 2)
-    		square5oscillationFrameNumber = (2 * 2) - square5oscillationFrameNumber;
+    	if(square5oscillationFrameNumber > (width/2)) {
+    		square5oscillationFrameNumber = (width) - (frameNumber % width);
+    	}
     	
-    	if(square6oscillationFrameNumber > 3)
-    		square6oscillationFrameNumber = (2 * 3) - square6oscillationFrameNumber;
+    	if(square6oscillationFrameNumber > (width/4)) {
+    		square6oscillationFrameNumber = (width/2) - (frameNumber % (width));
+    	}
     	
-        g.setFill(Color.WHITE);
+    	g.setFill(Color.WHITE);
         g.fillRect(0, 0, width, height); // First, fill the entire image with a background color!
 
         g.setFill(Color.BLACK);
@@ -62,35 +65,27 @@ public class Problem09 extends Application {
         	g.strokeLine(x1, y1, x2, y2);
         }
         
-        if(square1cyclicFrameNumber == 0) {
-        	g.setFill(Color.RED);
-            g.fillRect((frameNumber % width) + 1 , 1, SQUARE_SIZE, SQUARE_SIZE-2);	
-        }
-        if(square2cyclicFrameNumber == 0) {
-        	g.setFill(Color.GREEN);
-            g.fillRect(((2 * frameNumber) % (width)), SQUARE_SIZE + 1, SQUARE_SIZE, SQUARE_SIZE-2);	
-        }
-        if(square3cyclicFrameNumber == 0) {
-        	g.setFill(Color.BLUE);
-            g.fillRect(((3 * frameNumber) % (width)), (SQUARE_SIZE * 2) + 1, SQUARE_SIZE, SQUARE_SIZE-2);	
-        }
+    	g.setFill(Color.RED);
+        g.fillRect((frameNumber % width) + 1 , 1, SQUARE_SIZE, SQUARE_SIZE-2);	
+    
+    	g.setFill(Color.GREEN);
+        g.fillRect(((2 * frameNumber) % (width)), SQUARE_SIZE + 1, SQUARE_SIZE, SQUARE_SIZE-2);	
+    
+    	g.setFill(Color.BLUE);
+        g.fillRect(((4 * frameNumber) % (width)), (SQUARE_SIZE * 2) + 1, SQUARE_SIZE, SQUARE_SIZE-2);	
         
-        if(square4oscillationFrameNumber == 0) {
-        	g.setFill(Color.CYAN);
-            g.fillRect((frameNumber) % (width), (SQUARE_SIZE * 3) + 1, SQUARE_SIZE, SQUARE_SIZE-2);	
-        }
-        if(square5oscillationFrameNumber == 0) {
-        	g.setFill(Color.PINK);
-            g.fillRect(((2 * frameNumber) % (width)), (SQUARE_SIZE * 4) + 1, SQUARE_SIZE, SQUARE_SIZE-2);	
-        }
-        if(square6oscillationFrameNumber == 0) {
-        	g.setFill(Color.YELLOW);
-            g.fillRect(((3 * frameNumber) % (width)), (SQUARE_SIZE * 5) + 1, SQUARE_SIZE, SQUARE_SIZE-2);	
-        }
+        g.setFill(Color.CYAN);
+        g.fillRect(square4oscillationFrameNumber, (SQUARE_SIZE * 3) + 1, SQUARE_SIZE, SQUARE_SIZE - 2);
         
-        g.fillText( "Frame number " + frameNumber, 40, 50 );
-        g.fillText( String.format("Elapsed Time: %1.1f seconds", elapsedSeconds), 40, 80);
-
+        g.setFill(Color.DEEPPINK);
+        g.fillRect(2 * square5oscillationFrameNumber, (SQUARE_SIZE * 4) + 1, SQUARE_SIZE, SQUARE_SIZE - 2);
+        
+        g.setFill(Color.YELLOW);
+        g.fillRect(4 * square6oscillationFrameNumber, (SQUARE_SIZE * 5) + 1, SQUARE_SIZE, SQUARE_SIZE - 2);
+        
+        g.setFill(Color.BLACK);
+        g.fillText("square6oscillationFrameNumber = " + square6oscillationFrameNumber, 10, 40);
+        g.fillText("FrameNumber = " + frameNumber, 10, 70);
     }
 
     //------ Implementation details: DO NOT EXPECT TO UNDERSTAND THIS ------
