@@ -6,7 +6,8 @@ import java.util.Scanner;
  * 
  * @author Krutik Amin
  * 	This program converts a string input to a capitalized string
- *  using printCapitalized method and displays the end result.
+ *  using printCapitalized method and displays the end result. 
+ *  Could be improved.
  *
  */
 
@@ -22,24 +23,34 @@ public class problem01 {
 	public static String printCapitalized(String s) {
 		
 		boolean capitalizeNextCharacter = false;
+		char    oldChar = s.charAt(0);
+		char    capitalizedChar;
+		String  tempString = "";
 		
-		//for(int spaceIndex = s.indexOf(' '); spaceIndex < s.length(); spaceIndex = s.indexOf(' ', spaceIndex)) {
 		for(int index = 0; index < s.length(); index++) {
-			//char oldChar = s.charAt(spaceIndex+1);
-			if(s.charAt(index) == ' ' || index == 0) {
+			// Capitalize first character of sentence.
+			if(index == 0) {
+				oldChar = s.charAt(0);
+				capitalizedChar = Character.toUpperCase(oldChar);
+				// Add capitalized letter to the first position
+				tempString = Character.toString(capitalizedChar);
+				// Add rest of the string
+				s = tempString.concat(s.substring(1));
+			}
+			if(s.charAt(index) == ' ') {
 				capitalizeNextCharacter = true;
 			} else {
 				capitalizeNextCharacter = false;
 			}
 			if(capitalizeNextCharacter) {
-				char oldChar = s.charAt(index+1);
-				char newChar = Character.toUpperCase(oldChar);
-				System.out.printf("Old char = %c, new char = %c\n", oldChar, newChar);
-				String tempString = s.substring(0, s.indexOf(s.charAt(index)));
-				tempString = tempString.concat(Character.toString(newChar));
-				tempString = tempString.concat(s.substring(s.indexOf(s.charAt(index) + 1)));
-				s = tempString;
-				System.out.println(s);
+				oldChar = s.charAt(index + 1);
+				capitalizedChar = Character.toUpperCase(oldChar);
+				// Copy substring before capitalized char
+				tempString = s.substring(0, index);
+				// Add capitalized letter
+				tempString = tempString.concat(" " + Character.toString(capitalizedChar));
+				// Add rest of the string
+				s = tempString.concat(s.substring(index + 2));
 			}
 		}
 		return s;
