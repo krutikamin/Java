@@ -57,8 +57,8 @@ public class problem05 {
 		System.out.println("Max value = " + findMax.apply(testArray));
 		System.out.println("Min value = " + findMin.apply(testArray));
 		System.out.println("Total value = " + findSum.apply(testArray));
-		System.out.println("Avg value = " + findAvg.apply(testArray));
-		System.out.println("5 value occurs " + counter(5).apply(testArray));
+		System.out.printf("Avg value = %1.2f\n", findAvg.apply(testArray));
+		System.out.println("5 value occurs " + (int)counter(5).apply(testArray) + " time(s).");
 	}
 
 }
