@@ -39,7 +39,7 @@ public class Problem09 extends Application {
     	int       square3cyclicFrameNumber = frameNumber % 4;
     	int       square4oscillationFrameNumber = frameNumber % (2 * width);
     	int       square5oscillationFrameNumber = frameNumber % (width);
-    	int       square6oscillationFrameNumber = frameNumber % (width);
+    	int       square6oscillationFrameNumber = frameNumber % (width/2);
     	
     	if(square4oscillationFrameNumber > width) {
     		square4oscillationFrameNumber = (width) - (frameNumber % width);
@@ -50,7 +50,7 @@ public class Problem09 extends Application {
     	}
     	
     	if(square6oscillationFrameNumber > (width/4)) {
-    		square6oscillationFrameNumber = (width/2) - (frameNumber % (width));
+    		square6oscillationFrameNumber = (width/2) - (frameNumber % (width/2));
     	}
     	
     	g.setFill(Color.WHITE);
@@ -82,10 +82,6 @@ public class Problem09 extends Application {
         
         g.setFill(Color.YELLOW);
         g.fillRect(4 * square6oscillationFrameNumber, (SQUARE_SIZE * 5) + 1, SQUARE_SIZE, SQUARE_SIZE - 2);
-        
-        g.setFill(Color.BLACK);
-        g.fillText("square6oscillationFrameNumber = " + square6oscillationFrameNumber, 10, 40);
-        g.fillText("FrameNumber = " + frameNumber, 10, 70);
     }
 
     //------ Implementation details: DO NOT EXPECT TO UNDERSTAND THIS ------
