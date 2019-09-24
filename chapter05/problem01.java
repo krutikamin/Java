@@ -1,5 +1,13 @@
 package chapter05;
 
+/**
+ * 
+ * @author Krutik Amin
+ *         This program finds number of rolls it takes to land two dies making
+ *         total 2.
+ *
+ */
+
 public class problem01 {
 
 	public static void main(String[] args) {
